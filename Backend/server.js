@@ -5,7 +5,6 @@ const connectDB = require("./config/db");
 
 dotenv.config();
 
-// Validate required environment variables
 const requiredEnvVars = [
   "MONGO_URI",
   "JWT_SECRET",
@@ -24,18 +23,32 @@ if (missingEnvVars.length > 0) {
 
 const app = express();
 
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+// CLIENT_URL can be a comma separated list of allowed origins
+const allowedOrigins = process.env.CLIENT_URL
+  ? process.env.CLIENT_URL.split(",").map((o) => o.trim())
+  : ["http://localhost:5173"];
 
-// Raw body middleware for Stripe webhooks (must be before express.json)
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error(`CORS blocked: ${origin}`));
+    },
+    credentials: true,
+  })
+);
+
+// stripe needs the raw body, so this has to come before express.json
 app.use(
   "/api/subscriptions/webhook",
   express.raw({ type: "application/json" }),
 );
 
-// Regular JSON middleware for all other routes
 app.use(express.json());
 
-// Routes
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/scores", require("./routes/scoreRoutes"));
 app.use("/api/draws", require("./routes/drawRoutes"));
