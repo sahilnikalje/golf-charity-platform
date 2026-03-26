@@ -21,7 +21,7 @@ const getStats = async (req, res) => {
 // @GET /api/admin/users
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find({}).select('-password').populate('selectedCharity', 'name');
+    const users = await User.find({ role: 'user' }).select('-password').populate('selectedCharity', 'name');
     res.json(users);
   } catch (err) {
     res.status(500).json({ message: err.message });
