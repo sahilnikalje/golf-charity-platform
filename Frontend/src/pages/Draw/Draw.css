@@ -1,0 +1,131 @@
+.draw-page { padding: 2rem 1.5rem 4rem; }
+.draw-container { max-width: 900px; margin: 0 auto; }
+
+.draw-header { margin-bottom: 2.5rem; }
+.draw-header h1 { font-size: 2rem; font-weight: 800; }
+.draw-header p { color: var(--text-muted); margin-top: 0.4rem; }
+
+.how-draw-works {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.how-draw-works h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 1.25rem; }
+
+.draw-steps { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.draw-step {
+  flex: 1;
+  min-width: 180px;
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+}
+
+.draw-step span {
+  width: 28px; height: 28px;
+  background: var(--primary);
+  color: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.draw-step p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; }
+
+.prize-info {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.prize-tier {
+  flex: 1;
+  min-width: 150px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.jackpot-tier { border-color: var(--accent); }
+
+.prize-tier span { color: var(--text-muted); font-size: 0.85rem; }
+.prize-tier strong { font-size: 1.3rem; color: var(--primary); }
+.jackpot-tier strong { color: var(--accent); }
+.prize-tier small { color: var(--text-muted); font-size: 0.75rem; }
+
+.draws-history h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.25rem; }
+
+.draw-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: var(--transition);
+}
+
+.draw-card:hover { border-color: var(--primary); }
+
+.draw-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.draw-month { font-weight: 700; font-size: 1rem; }
+.draw-type {
+  background: var(--bg-card2);
+  color: var(--text-muted);
+  padding: 0.25rem 0.6rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  text-transform: capitalize;
+}
+
+.draw-numbers { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem; }
+
+.draw-ball {
+  width: 46px; height: 46px;
+  background: rgba(0,200,150,0.1);
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--primary);
+}
+
+.draw-pool-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.rollover-badge {
+  background: rgba(245,166,35,0.15);
+  color: var(--accent);
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+}
+
+.loading-text, .empty-text { color: var(--text-muted); font-style: italic; padding: 1rem 0; }

@@ -1,0 +1,50 @@
+.admin-page { padding: 2rem 1.5rem 4rem; }
+.admin-container { max-width: 1200px; margin: 0 auto; }
+
+.admin-page-header { margin-bottom: 2rem; }
+.admin-page-header h1 { font-size: 1.8rem; font-weight: 800; }
+.admin-page-header p { color: var(--text-muted); margin-top: 0.3rem; }
+
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.admin-stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-align: center;
+  transition: var(--transition);
+  display: block;
+}
+
+.admin-stat-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+
+.admin-stat-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.admin-stat-value { font-size: 2rem; font-weight: 800; color: var(--primary); }
+.admin-stat-label { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.25rem; }
+
+.admin-nav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.admin-nav-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  transition: var(--transition);
+  display: block;
+}
+
+.admin-nav-card:hover { border-color: var(--primary); }
+
+.admin-nav-card span { font-size: 1.75rem; display: block; margin-bottom: 0.75rem; }
+.admin-nav-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
+.admin-nav-card p { color: var(--text-muted); font-size: 0.85rem; }

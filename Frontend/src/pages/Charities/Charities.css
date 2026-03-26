@@ -1,0 +1,64 @@
+.charities-page { padding: 2rem 1.5rem 4rem; }
+.charities-container { max-width: 1200px; margin: 0 auto; }
+
+.charities-header { margin-bottom: 2.5rem; }
+.charities-header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; }
+.charities-header p { color: var(--text-muted); margin-bottom: 1.5rem; }
+
+.search-bar input {
+  width: 100%;
+  max-width: 400px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  color: var(--text);
+  font-size: 0.95rem;
+  transition: var(--transition);
+}
+
+.search-bar input:focus { outline: none; border-color: var(--primary); }
+
+.charities-section { margin-bottom: 3rem; }
+.charities-section h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 1.5rem; }
+
+.charities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.charity-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: var(--transition);
+  display: block;
+}
+
+.charity-card:hover { border-color: var(--primary); transform: translateY(-3px); }
+.charity-card.featured { border-color: var(--accent); }
+
+.charity-img { height: 140px; overflow: hidden; background: var(--bg-card2); }
+.charity-img img { width: 100%; height: 100%; object-fit: cover; }
+.charity-img-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem;
+}
+
+.charity-info { padding: 1.25rem; }
+.charity-category {
+  font-size: 0.75rem;
+  color: var(--primary);
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.05em;
+}
+.charity-info h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+.charity-info p { color: var(--text-muted); font-size: 0.85rem; line-height: 1.5; margin-bottom: 0.75rem; }
+.charity-raised { font-size: 0.85rem; color: var(--success); font-weight: 600; }
+
+.loading-text, .empty-text { color: var(--text-muted); font-style: italic; }

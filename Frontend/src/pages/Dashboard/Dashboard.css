@@ -1,0 +1,107 @@
+.dashboard-page {
+  padding: 2rem 1.5rem 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dash-header { margin-bottom: 2.5rem; }
+.dash-header h1 { font-size: 1.8rem; font-weight: 800; }
+.dash-header h1 span { color: var(--primary); }
+.dash-header p { color: var(--text-muted); margin-top: 0.3rem; }
+
+.dash-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.dash-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  transition: var(--transition);
+}
+
+.dash-card:hover { border-color: var(--primary); }
+
+.dash-card-title {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.dash-badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.dash-badge.active { background: rgba(46, 204, 113, 0.15); color: var(--success); }
+.dash-badge.inactive { background: rgba(231, 76, 60, 0.15); color: var(--danger); }
+
+.dash-info { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+.dash-empty { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; font-style: italic; }
+
+.dash-link { color: var(--primary); font-size: 0.9rem; font-weight: 600; }
+
+.dash-link-btn {
+  display: inline-block;
+  background: var(--primary);
+  color: #000;
+  padding: 0.5rem 1.2rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 0.5rem;
+  transition: var(--transition);
+}
+
+.dash-link-btn:hover { background: var(--primary-dark); }
+
+.score-mini-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+
+.score-mini-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-card2);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+}
+
+.score-val { font-weight: 700; color: var(--primary); font-size: 1.1rem; }
+.score-date { color: var(--text-muted); font-size: 0.8rem; }
+
+.charity-percent {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 0.3rem;
+}
+
+.draw-numbers-mini {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.75rem;
+}
+
+.draw-num {
+  width: 38px; height: 38px;
+  background: rgba(0, 200, 150, 0.15);
+  border: 1px solid var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--primary);
+}
