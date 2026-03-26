@@ -69,7 +69,9 @@ export default function AdminUsers() {
                       <button className="btn-toggle" onClick={() => handleToggleSub(u)}>
                         {u.isSubscribed ? 'Deactivate' : 'Activate'}
                       </button>
-                      <button className="btn-del" onClick={() => handleDelete(u._id)}>Delete</button>
+                      {u.role !== 'admin' && (
+                        <button className="btn-del" onClick={() => handleDelete(u._id)}>Delete</button>
+                      )}
                     </td>
                   </tr>
                 ))}

@@ -1,16 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { loadStripe } from "@stripe/stripe-js";
+import { useAuth } from "../../context/AuthContext.jsx";
 import {
   getSubscriptionStatus,
   cancelSubscription,
   createCheckoutSession,
 } from "../../services/subscriptionService.js";
 import "./Subscription.css";
-
-// Initialize Stripe (will use Stripe key from backend via checkout session)
-const stripePromise = loadStripe("pk_test_51T6T0N2K27CUzi9dh5S8X8J9K5L0M1N2O3P4Q5R6S7T8U9V0W1X2Y3Z4A5B6C7D8E9F0");
 
 const PLANS = [
   {
@@ -35,30 +32,49 @@ const PLANS = [
 ];
 
 export default function Subscription() {
+  const { user, loading: authLoading } = useAuth();
+  const navigate = useNavigate();
   const [selected, setSelected] = useState("monthly");
   const [sub, setSub] = useState(null);
   const [loading, setLoading] = useState(false);
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    // Check for payment status in URL
+    if (authLoading) return;
+
+    if (!user) {
+      toast.error("Please log in to subscribe");
+      navigate("/login");
+      return;
+    }
+
+    const loadSubscription = async () => {
+      try {
+        const res = await getSubscriptionStatus();
+        setSub(res.data);
+      } catch (err) {
+        console.error("Failed to load subscription status:", err);
+      }
+    };
+
+    loadSubscription();
+
     const status = searchParams.get("status");
     if (status === "success") {
       toast.success("✓ Subscription activated! Welcome aboard.");
-      getSubscriptionStatus()
-        .then((r) => setSub(r.data))
-        .catch((err) => console.error(err));
+      loadSubscription();
     } else if (status === "cancelled") {
       toast.info("Payment cancelled. Try again whenever you're ready.");
     }
-
-    // Load subscription status
-    getSubscriptionStatus()
-      .then((r) => setSub(r.data))
-      .catch(() => {});
-  }, [searchParams]);
+  }, [user, authLoading, navigate, searchParams]);
 
   const handleSubscribe = async () => {
+    if (!user) {
+      toast.error("Please log in first");
+      navigate("/login");
+      return;
+    }
+
     if (!selected) {
       toast.error("Please select a plan");
       return;
@@ -67,21 +83,15 @@ export default function Subscription() {
     setLoading(true);
     try {
       const response = await createCheckoutSession(selected);
-      if (response.data.sessionId) {
-        // Redirect to Stripe Checkout
-        const stripe = await stripePromise;
-        const { error } = await stripe.redirectToCheckout({
-          sessionId: response.data.sessionId,
-        });
-
-        if (error) {
-          toast.error(error.message || "Failed to redirect to checkout");
-        }
+      if (response.data.url) {
+        window.location.href = response.data.url;
+      } else {
+        toast.error("Failed to get checkout URL from server");
       }
     } catch (err) {
       console.error("Checkout error:", err);
       toast.error(
-        err.response?.data?.message || "Failed to create checkout session"
+        err.response?.data?.message || "Failed to create checkout session",
       );
     } finally {
       setLoading(false);
@@ -188,7 +198,9 @@ export default function Subscription() {
             onClick={handleSubscribe}
             disabled={loading}
           >
-            {loading ? "Processing..." : `Subscribe — ${selected === "yearly" ? "₹9999/yr" : "₹999/mo"}`}
+            {loading
+              ? "Processing..."
+              : `Subscribe — ${selected === "yearly" ? "₹9999/yr" : "₹999/mo"}`}
           </button>
           <p className="sub-note">Secure payment via Stripe. Cancel anytime.</p>
         </div>
